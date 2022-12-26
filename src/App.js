@@ -5,13 +5,18 @@ import { PersistGate } from 'redux-persist/lib/integration/react'
 import { store, persistor } from '@/Store'
 import ApplicationNavigator from '@/Navigators/Application'
 import './Translations'
+import MoodDetail from './Components/MoodDetail'
+
+// const App = () => (
+//   <Provider store={store}>
+//     <PersistGate loading={null} persistor={persistor}>
+//       <ApplicationNavigator />
+//     </PersistGate>
+//   </Provider>
+// )
 
 const App = () => (
-  <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-      <ApplicationNavigator />
-    </PersistGate>
-  </Provider>
+  <MoodDetail />
 )
 
 export default App
