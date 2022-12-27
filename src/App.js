@@ -1,22 +1,36 @@
-import 'react-native-gesture-handler'
-import React from 'react'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/lib/integration/react'
-import { store, persistor } from '@/Store'
-import ApplicationNavigator from '@/Navigators/Application'
-import './Translations'
+
+
+import React, {Component} from 'react';
+import { FlatList } from 'react-native';
+import MoodPicker from './Components/MoodSelector';
 import MoodDetail from './Components/MoodDetail'
 
-// const App = () => (
-//   <Provider store={store}>
-//     <PersistGate loading={null} persistor={persistor}>
-//       <ApplicationNavigator />
-//     </PersistGate>
-//   </Provider>
-// )
+export default class App extends React.Component {
 
-const App = () => (
-  <MoodDetail />
-)
+	constructor(props){
+		super(props);
 
-export default App
+		this.state = {
+			error:''
+		};
+	}
+
+	
+	componentDidMount(){
+		// Get the user's location
+		
+	}
+
+
+
+	render() {
+
+		return (
+			<React.Component>
+            <MoodPicker />
+			<MoodDetail />
+			</React.Component>
+
+		);
+	}
+}
