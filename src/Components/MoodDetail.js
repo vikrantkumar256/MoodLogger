@@ -71,6 +71,8 @@ export default class MoodDetail extends Component {
 
     constructor(props) {
         super(props);
+        // const {params} = this.props.navigation.state;
+        // this.selectedMood = params.selectedMood;
         this.state = {
             "text": ""
         };
@@ -92,6 +94,9 @@ export default class MoodDetail extends Component {
 
 
     render() {
+
+        console.log(this.props.navigation.props);
+        
         return (
             <SafeAreaView>
                 <View>

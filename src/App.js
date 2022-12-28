@@ -2,8 +2,15 @@
 
 import React, {Component} from 'react';
 import { FlatList } from 'react-native';
-import MoodPicker from './Components/MoodSelector';
-import MoodDetail from './Components/MoodDetail'
+import MoodSelector from './Components/MoodSelector';
+import MoodDetail from './Components/MoodDetail';
+import 'react-native-gesture-handler';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
+
 
 export default class App extends React.Component {
 
@@ -16,6 +23,7 @@ export default class App extends React.Component {
 	}
 
 	
+	
 	componentDidMount(){
 		// Get the user's location
 		
@@ -26,10 +34,20 @@ export default class App extends React.Component {
 	render() {
 
 		return (
-			<React.Fragment>
-            <MoodPicker />
-			<MoodDetail />
-			</React.Fragment>
+			
+			<NavigationContainer>
+        <Stack.Navigator>
+		<Stack.Screen
+            name="MoodSelector"
+            component={MoodSelector}
+          />
+          <Stack.Screen
+            name="MoodDetail"
+            component={MoodDetail}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+			
 
 		);
 	}

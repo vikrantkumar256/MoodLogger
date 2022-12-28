@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { StyleSheet, View, Image, Pressable } from 'react-native';
 import { Text, Card, Divider, Switch } from 'react-native-elements';
 import { AppTextRegular, AppTextBold } from './AppText';
-
 const moodOptions = [
     { emoji: '🧑‍💻', description: 'studious' },
     { emoji: '🤔', description: 'pensive' },
@@ -23,17 +22,22 @@ export default class MoodPicker extends Component {
 			error:''
 		};
     this.pressedemoji = this.pressedemoji.bind(this);
+    
 	}
     
 
     
    pressedemoji(option) {
+    
             
             
     console.log(option.description,"emoji clicked");
     this.setState((prevState) => ({
         selectedMood : option
-      }))
+      }));
+      this.props.navigation.navigate('MoodDetail',{selectedMood: this.state.selectedMood});
+  
+
 
 
 }
@@ -42,7 +46,7 @@ export default class MoodPicker extends Component {
     render (){
 
 
-        
+       
 
         
         return (
