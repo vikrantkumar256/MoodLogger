@@ -26,10 +26,10 @@ export default class App extends React.Component {
 	render() {
 
 		return (
-			<React.Component>
+			<React.Fragment>
             <MoodPicker />
 			<MoodDetail />
-			</React.Component>
+			</React.Fragment>
 
 		);
 	}
