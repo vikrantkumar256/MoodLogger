@@ -95,8 +95,8 @@ export default class MoodDetail extends Component {
 
     render() {
 
-        console.log(this.props.navigation.props);
-        
+        console.log(this.props.route.params.selectedMood);
+
         return (
             <SafeAreaView>
                 <View>
