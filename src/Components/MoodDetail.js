@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, SafeAreaView, Pressable } from 'react-native';
 import { Card } from 'react-native-elements';
 import { TextInput } from 'react-native';
+import { loadLanguages } from 'i18next';
+
+import { getDBConnection,createTable,getmoodItems,savemoodItems } from '@/Services/database/db_services';
 
 const DetailQ = [
     "Everything falls in place when you feel grateful, why are you feeling grateful?"
@@ -63,7 +66,28 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         backgroundColor: '#CDEFF9'
     }
-})
+});
+
+const initializeDatabase = async (mood,description) => {
+    try {
+    //   const initMood = {  mood: mood, description:description };
+    // console.log("mood",mood,"description",description);
+      const db = await getDBConnection();
+      await createTable(db);
+      const storedMoodItems = await getmoodItems(db);
+      if (storedMoodItems.length) {
+        console.log(storedMoodItems);
+      } else {
+        console.log(storedMoodItems);
+        // await savemoodItems(db, initMood);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+
 
 
 
@@ -76,10 +100,21 @@ export default class MoodDetail extends Component {
         this.state = {
             "text": ""
         };
+
+        
+            
+        
+        
+
+        
         this.handleChangeText = this.handleChangeText.bind(this);
         this.handleDetail = this.handleDetail.bind(this);
     }
 
+    
+
+
+    
 
     handleChangeText(data) {
         this.setState({
@@ -88,7 +123,10 @@ export default class MoodDetail extends Component {
     }
 
     handleDetail = () => {
-        console.log("pressed vikrant kumar");
+        console.log("submit mood");
+        initializeDatabase();
+        // initDatabase(this.props.route.params.selectedMood, this.state.text);
+
     }
 
 

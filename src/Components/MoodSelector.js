@@ -25,7 +25,10 @@ export default class MoodPicker extends Component {
     };
     this.pressedemoji = this.pressedemoji.bind(this);
 
+
   }
+
+
 
 
 
