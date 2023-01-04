@@ -4,7 +4,7 @@ import { Card } from 'react-native-elements';
 import { TextInput } from 'react-native';
 import { loadLanguages } from 'i18next';
 
-import { getDBConnection,createTable,getmoodItems,savemoodItems } from '@/Services/database/db_services';
+import { getDBConnection,createTable,getmoodItems,savemoodItems, addMood } from '@/Services/database/db_services';
 
 const DetailQ = [
     "Everything falls in place when you feel grateful, why are you feeling grateful?"
@@ -68,12 +68,13 @@ const styles = StyleSheet.create({
     }
 });
 
-const initializeDatabase = async (mood,description) => {
+const initializeDatabasetxn = async (mood,description) => {
     try {
     //   const initMood = {  mood: mood, description:description };
-    // console.log("mood",mood,"description",description);
+    console.log("mood",mood,"description",description);
       const db = await getDBConnection();
       await createTable(db);
+      await addMood(db,mood,description);
       const storedMoodItems = await getmoodItems(db);
       if (storedMoodItems.length) {
         console.log(storedMoodItems);
@@ -124,7 +125,8 @@ export default class MoodDetail extends Component {
 
     handleDetail = () => {
         console.log("submit mood");
-        initializeDatabase();
+        console.log("checkparams",this.props.route.params.selectedMood, this.state.text);
+        initializeDatabasetxn(this.props.route.params.selectedMood.description, this.state.text);
         // initDatabase(this.props.route.params.selectedMood, this.state.text);
 
     }
@@ -133,7 +135,7 @@ export default class MoodDetail extends Component {
 
     render() {
 
-        console.log(this.props.route.params.selectedMood);
+        // console.log(this.props.route.params.selectedMood);
 
         return (
             <SafeAreaView>

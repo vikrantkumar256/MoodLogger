@@ -16,6 +16,14 @@ export const createTable = async (db) => {
   await db.executeSql(query);
 };
 
+export const addMood = async (db,mood,description) => {
+    const insertQuery =
+    `INSERT INTO ${tableName}(mood,description) VALUES('${mood}', '${description}')`
+
+  return db.executeSql(insertQuery);
+    
+  };
+
 export const getmoodItems = async (db) => {
   try {
     const moodItems = [];
@@ -36,8 +44,8 @@ export const getmoodItems = async (db) => {
 
 export const savemoodItems = async (db, moodItems) => {
   const insertQuery =
-    `INSERT OR REPLACE INTO ${tableName}(rowid, value) values` +
-    moodItems.map(i => `(${i.id}, '${i.value}')`).join(',');
+    `INSERT OR REPLACE INTO ${tableName}(rowid as id, mood,description) values` +
+    moodItems.map(i => `(${i.id}, '${i.mood}', '${i.description})`).join(',');
 
   return db.executeSql(insertQuery);
 };
