@@ -11,9 +11,7 @@ export const getDBConnection = async () => {
 
 export const createTable = async (db) => {
   // create table if not exists
-  const query = `CREATE TABLE IF NOT EXISTS ${tableName}(
-        value TEXT NOT NULL
-    );`;
+  const query = `CREATE TABLE IF NOT EXISTS ${tableName}( mood varchar(20) NOT NULL, description varchar(255) ); `;
 
   await db.executeSql(query);
 };
@@ -21,12 +19,14 @@ export const createTable = async (db) => {
 export const getmoodItems = async (db) => {
   try {
     const moodItems = [];
-    const results = await db.executeSql(`SELECT rowid as id,value FROM ${tableName}`);
+    const results = await db.executeSql(`SELECT rowid as id,mood,description FROM ${tableName}`);
+    console.log("results",results);
     results.forEach(result => {
       for (let index = 0; index < result.rows.length; index++) {
         moodItems.push(result.rows.item(index))
       }
     });
+    console.log("moodItems",moodItems);
     return moodItems;
   } catch (error) {
     console.error(error);
