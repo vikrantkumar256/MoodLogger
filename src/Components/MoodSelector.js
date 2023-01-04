@@ -32,15 +32,27 @@ export default class MoodPicker extends Component {
 
 
 
-  pressedemoji(option) {
+  async pressedemoji(option) {
 
 
 
     console.log(option.description, "emoji clicked");
-    this.setState((prevState) => ({
+    await this.setState((prevState) => ({
       selectedMood: option
     }));
+    console.log("selectedmood",this.state.selectedMood);
     this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });
+
+
+
+
+  }
+  pressedhistory(option) {
+
+
+
+    
+    this.props.navigation.navigate('History');
 
 
 
@@ -85,7 +97,17 @@ export default class MoodPicker extends Component {
 
           </View>
           <View>
-            <LogNav />
+          <View style={styles.history}>
+                <Pressable
+                onPress={() => this.pressedhistory()}
+                >
+                    <View>
+                        <Text>
+                            History
+                        </Text>
+                    </View>
+                </Pressable>
+            </View>
           </View>
         </View>
 

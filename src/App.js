@@ -8,6 +8,7 @@ import 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import History from './Components/History';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,10 @@ export default class App extends React.Component {
           <Stack.Screen
             name="MoodDetail"
             component={MoodDetail}
+          />
+		  <Stack.Screen
+            name="History"
+            component={History}
           />
         </Stack.Navigator>
       </NavigationContainer>
