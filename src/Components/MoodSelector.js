@@ -4,7 +4,7 @@ import { Text, Card, Divider, Switch } from 'react-native-elements';
 import { AppTextRegular, AppTextBold } from './AppText';
 
 const moodOptions = [
-  { emoji: '🧑‍💻', description: 'studious' },
+  { emoji: '🧑‍💻', description: 'studios' },
   { emoji: '🤔', description: 'pensive' },
   { emoji: '😊', description: 'happy' },
   { emoji: '🥳', description: 'celebratory' },
@@ -36,14 +36,12 @@ export default class MoodPicker extends Component {
     await this.setState((prevState) => ({
       selectedMood: option
     }));
-    console.log("selectedmood",this.state.selectedMood);
+    console.log("selectedmood", this.state.selectedMood);
     // this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });
   }
   submitmood(option) {
-    if(this.state.selectedMood !='')
-    {this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });}
-    else
-    {
+    if (this.state.selectedMood != '') { this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood }); }
+    else {
       alert("Please select a mood");
 
     }
@@ -83,27 +81,27 @@ export default class MoodPicker extends Component {
 
           </View>
           <View style={styles.buttonList}>
-          <View style={styles.button}>
-                <Pressable
+            <View style={styles.button}>
+              <Pressable
                 onPress={() => this.submitmood()}
-                >
-                    <View>
-                        <Text style = {styles.buttonText}>
-                            Submit
-                        </Text>
-                    </View>
-                </Pressable>
+              >
+                <View>
+                  <Text style={styles.buttonText}>
+                    Submit
+                  </Text>
+                </View>
+              </Pressable>
             </View>
             <View style={styles.button}>
-                <Pressable
+              <Pressable
                 onPress={() => this.pressedhistory()}
-                >
-                    <View>
-                        <Text style = {styles.buttonText}>
-                            History
-                        </Text>
-                    </View>
-                </Pressable>
+              >
+                <View>
+                  <Text style={styles.buttonText}>
+                    History
+                  </Text>
+                </View>
+              </Pressable>
             </View>
           </View>
         </View>
