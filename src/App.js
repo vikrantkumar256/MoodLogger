@@ -38,7 +38,7 @@ export default class App extends React.Component {
 		return (
 
 			<NavigationContainer>
-<<<<<<< HEAD
+
         <Stack.Navigator>
 		<Stack.Screen
             name="MoodSelector"
@@ -52,26 +52,12 @@ export default class App extends React.Component {
             name="History"
             component={History}
           />
-        </Stack.Navigator>
-      </NavigationContainer>
-			
-=======
-				<Stack.Navigator>
-					<Stack.Screen
-						name="MoodSelector"
-						component={MoodSelector}
-					/>
-					<Stack.Screen
-						name="MoodDetail"
-						component={MoodDetail}
-					/>
-					<Stack.Screen
+		  <Stack.Screen
 						name="MoodQuote"
 						component={MoodQuote} />
-				</Stack.Navigator>
-			</NavigationContainer>
-
->>>>>>> 1e7fe68f4e7f07423dc9a4e33d2b3b392eb5f938
+				
+        </Stack.Navigator>
+      </NavigationContainer>
 
 		);
 	}

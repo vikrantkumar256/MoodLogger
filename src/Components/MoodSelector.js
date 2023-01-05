@@ -26,9 +26,7 @@ export default class MoodPicker extends Component {
 
 
   }
-<<<<<<< HEAD
-  async pressedemoji(option) {
-=======
+
 
 
 
@@ -36,9 +34,6 @@ export default class MoodPicker extends Component {
 
   async pressedemoji(option) {
 
-
-
->>>>>>> 1e7fe68f4e7f07423dc9a4e33d2b3b392eb5f938
     console.log(option.description, "emoji clicked");
     await this.setState((prevState) => ({
       selectedMood: option
