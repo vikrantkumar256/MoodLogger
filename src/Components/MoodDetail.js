@@ -179,14 +179,14 @@ export default class MoodDetail extends Component {
                         </View>
                         <View style={styles.inputBlock}>
                             <TextInput
-                                style={styles.input}
+                                style={[styles.input, { flexGrow: 1 }]}
                                 onChangeText={data => this.handleChangeText(data)}
                                 value={this.state.text}
                                 placeholder="Write Custom Reason"
                                 onSubmitEditing={this.saveInput}
                             />
                             <TouchableHighlight onPress={this.saveInput} style={[styles.input, { backgroundColor: "green" }]}>
-                                <Text>
+                                <Text style={{ color: 'white', fontWeight: "800" }}>
                                     Send
                                 </Text>
                             </TouchableHighlight>

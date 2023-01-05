@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
         margin: 12,
         padding: 10,
         backgroundColor: "green",
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
 })
 
@@ -43,7 +45,7 @@ export default class MoodQuote extends Component {
                     </View>
                     <View>
                         <TouchableHighlight onPress={this.goHome} style={styles.home}>
-                            <Text>
+                            <Text style={{ color: "white", fontWeight: "800" }}>
                                 Home
                             </Text>
                         </TouchableHighlight>
