@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Pressable } from 'react-native';
+import { StyleSheet, View, Image, Pressable, Alert } from 'react-native';
 import { Text, Card, Divider, Switch } from 'react-native-elements';
 import { AppTextRegular, AppTextBold } from './AppText';
-import Dialog, { DialogContent } from 'react-native-popup-dialog';
-import LogNav from '../Navigators/LogNav';
 
 const moodOptions = [
   { emoji: '🧑‍💻', description: 'studious' },
@@ -46,9 +44,7 @@ export default class MoodPicker extends Component {
     {this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });}
     else
     {
-      this.setState((prevState) => ({
-        dialogVisible:true
-      }));
+      alert("Please select a mood");
 
     }
   }
@@ -59,16 +55,6 @@ export default class MoodPicker extends Component {
     return (
       <View>
         <View style={styles.container}>
-              <Dialog
-            visible={this.state.dialogVisible}
-            onTouchOutside={() => {
-              this.setState({ visible: false });
-            }}
-              >
-            <DialogContent>
-              Please select a mood.
-            </DialogContent>
-          </Dialog>
           <AppTextBold style={styles.heading}>How are you feeling today?</AppTextBold>
           <View style={styles.moodList}>
             {
