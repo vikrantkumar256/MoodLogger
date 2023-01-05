@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Image, Pressable } from 'react-native';
 import { Text, Card, Divider, Switch } from 'react-native-elements';
 import { AppTextRegular, AppTextBold } from './AppText';
+import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import LogNav from '../Navigators/LogNav';
 
 const moodOptions = [
@@ -13,62 +14,54 @@ const moodOptions = [
 ];
 
 export default class MoodPicker extends Component {
-
-
-
   constructor(props) {
     super(props);
 
     this.state = {
       selectedMood: '',
+      dialogVisible: false,
       error: ''
     };
     this.pressedemoji = this.pressedemoji.bind(this);
 
 
   }
-
-
-
-
-
   async pressedemoji(option) {
-
-
-
     console.log(option.description, "emoji clicked");
     await this.setState((prevState) => ({
       selectedMood: option
     }));
     console.log("selectedmood",this.state.selectedMood);
-    this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });
+    // this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });
+  }
+  submitmood(option) {
+    if(this.state.selectedMood !='')
+    {this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });}
+    else
+    {
+      this.setState((prevState) => ({
+        dialogVisible:true
+      }));
 
-
-
-
+    }
   }
   pressedhistory(option) {
-
-
-
-    
     this.props.navigation.navigate('History');
-
-
-
-
   }
-
-
   render() {
-
-
-
-
-
     return (
       <View>
         <View style={styles.container}>
+              <Dialog
+            visible={this.state.dialogVisible}
+            onTouchOutside={() => {
+              this.setState({ visible: false });
+            }}
+              >
+            <DialogContent>
+              Please select a mood.
+            </DialogContent>
+          </Dialog>
           <AppTextBold style={styles.heading}>How are you feeling today?</AppTextBold>
           <View style={styles.moodList}>
             {
@@ -96,13 +89,24 @@ export default class MoodPicker extends Component {
             }
 
           </View>
-          <View>
-          <View style={styles.history}>
+          <View style={styles.buttonList}>
+          <View style={styles.button}>
+                <Pressable
+                onPress={() => this.submitmood()}
+                >
+                    <View>
+                        <Text style = {styles.buttonText}>
+                            Submit
+                        </Text>
+                    </View>
+                </Pressable>
+            </View>
+            <View style={styles.button}>
                 <Pressable
                 onPress={() => this.pressedhistory()}
                 >
                     <View>
-                        <Text>
+                        <Text style = {styles.buttonText}>
                             History
                         </Text>
                     </View>
@@ -161,7 +165,7 @@ const styles = StyleSheet.create({
   },
   container: {
     borderWidth: 0.5,
-    borderColor: '#8B4CFC',
+    borderColor: '#822faf',
     margin: 10,
     borderRadius: 50,
     padding: 20,
@@ -177,6 +181,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     color: theme.colorBlack,
   },
+  buttonList: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    color: theme.colorBlack,
+  },
   moodText: {
     fontSize: 25,
     margin: 10,
@@ -185,6 +194,8 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 30,
+    borderWidth: 0.5,
+    borderColor: '#822faf',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 5,
@@ -217,7 +228,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
-    backgroundColor: theme.primary,
+    backgroundColor: '#822faf',
     width: 150,
     borderRadius: 20,
     marginTop: 20,
