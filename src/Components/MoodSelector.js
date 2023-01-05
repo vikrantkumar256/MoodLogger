@@ -32,12 +32,12 @@ export default class MoodPicker extends Component {
 
 
 
-  pressedemoji(option) {
+  async pressedemoji(option) {
 
 
 
     console.log(option.description, "emoji clicked");
-    this.setState((prevState) => ({
+    await this.setState((prevState) => ({
       selectedMood: option
     }));
     this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });
