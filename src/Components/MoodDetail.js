@@ -3,15 +3,13 @@ import { Text, View, StyleSheet, SafeAreaView, Pressable } from 'react-native';
 import { Card } from 'react-native-elements';
 import { TextInput } from 'react-native';
 import { loadLanguages } from 'i18next';
-import moodData from '@/Data/data';
+import { imageData, moodData } from '@/Data/data';
+import { Image } from 'react-native';
 
 import { getDBConnection, createTable, getmoodItems, savemoodItems, addMood } from '@/Services/database/db_services';
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import { objectOf } from 'prop-types';
 
-const DetailQ = [
-    "Everything falls in place when you feel grateful, why are you feeling grateful?"
-
-];
 
 const moodDescrpt = [
     {
@@ -153,25 +151,29 @@ export default class MoodDetail extends Component {
 
 
     render() {
-
+        const mood = this.props.route.params.selectedMood.description;
+        // console.log("mood", mood);
+        // console.log(moodData);
+        // console.log(objectOf(mood));
+        console.log('submood', moodData[mood]);
+        const Submood = Object.keys(moodData[mood]).slice(0, -2);
 
         return (
             <SafeAreaView>
                 <View>
                     <Card containerStyle={styles.card_today}>
-                        <Card.Title style={{ fontSize: 20 }}>{DetailQ[0]}</Card.Title>
+                        <Card.Title style={{ fontSize: 20 }}>Feeling {mood}! What's the reason
+                            Come'on Share with us</Card.Title>
                         <Card.Divider />
                         <View style={styles.detail}>
                             {
-                                moodDescrpt.map(({ emoji, descrp }) => {
+                                Submood.map((key) => {
                                     return (
-                                        <Pressable key={descrp} onPress={() => this.handleDetail(descrp)} style={({ pressed }) => [{ backgroundColor: pressed ? '#FEDEF7' : '#CDEFF9' },]}>
+                                        <Pressable key={key} onPress={() => this.handleDetail(key)} style={({ pressed }) => [{ backgroundColor: pressed ? '#FEDEF7' : '#CDEFF9' },]}>
                                             <View style={styles.descrp}>
-                                                <Text style={styles.emoji}>
-                                                    {emoji}
-                                                </Text>
+                                                <Image source={imageData[key]} style={{ width: 50, height: 50 }}></Image>
                                                 <Text style={styles.descrpText}>
-                                                    {descrp}
+                                                    {key}
                                                 </Text>
                                             </View>
                                         </Pressable>
