@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, SafeAreaView, Pressable } from 'react-native';
 import { Card } from 'react-native-elements';
 import { TextInput } from 'react-native';
 import { loadLanguages } from 'i18next';
+import moodData from '@/Data/data';
 
 import { getDBConnection, createTable, getmoodItems, savemoodItems, addMood } from '@/Services/database/db_services';
 import { TouchableHighlight } from 'react-native-gesture-handler';
@@ -130,18 +131,21 @@ export default class MoodDetail extends Component {
 
     saveInput = () => {
         console.log(this.props.route.params.selectedMood.description, this.state.text);
+        mood = this.props.route.params.selectedMood.description;
         initializeDatabasetxn(this.props.route.params.selectedMood.description, this.state.text);
         // initDatabase(this.props.route.params.selectedMood, this.state.text);
         // alert("Mood Saved");
-        this.props.navigation.navigate('MoodQuote');
+        this.props.navigation.navigate('MoodQuote', { 'mood': mood, 'submood': "custom" });
     }
+
 
     handleDetail = (descrp) => {
         console.log(descrp);
         console.log(this.props.route.params.selectedMood.description);
+        mood = this.props.route.params.selectedMood.description;
         initializeDatabasetxn(this.props.route.params.selectedMood.description, descrp);
         alert("Mood Saved");
-        this.props.navigation.navigate('MoodQuote');
+        this.props.navigation.navigate('MoodQuote', { 'mood': mood, 'submood': descrp });
 
 
     }
