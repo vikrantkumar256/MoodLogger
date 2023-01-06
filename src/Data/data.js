@@ -56,7 +56,8 @@ const moodData = {
 };
 
 const imageData = {
-    "Joy": require("../Assets/emotions/Joy.png"),
+    "Joy": require('../Assets/emotions/Joy.png'),
+
 
 };
 
