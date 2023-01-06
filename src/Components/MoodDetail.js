@@ -163,7 +163,7 @@ export default class MoodDetail extends Component {
                 <View>
                     <Card containerStyle={styles.card_today}>
                         <Card.Title style={{ fontSize: 20 }}>Feeling {mood}! What's the reason
-                            Come'on Share with us</Card.Title>
+                            Come'on share with us</Card.Title>
                         <Card.Divider />
                         <View style={styles.detail}>
                             {

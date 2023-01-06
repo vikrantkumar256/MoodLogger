@@ -206,7 +206,10 @@ const styles = StyleSheet.create({
     color: theme.colorBlack,
     textAlign: 'center',
     fontSize: 15,
-    textTransform: 'capitalize'
+    textTransform: 'capitalize',
+    fontWeight:'800',
+    marginBottom:20,
+
   },
   heading: {
     color: theme.colorBlack,
