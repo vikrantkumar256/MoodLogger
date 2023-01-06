@@ -158,7 +158,7 @@ export default class History extends Component {
       }
       if(sum<=0)
       {
-        return <Text>There is no mood log yet</Text>
+        return <Text>There is no mood logged yet</Text>
       }
       else {
         return <PieChart
