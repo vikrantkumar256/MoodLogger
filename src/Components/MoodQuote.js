@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, SafeAreaView, Pressable } from 'react-native';
 import { Card } from 'react-native-elements';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-
+import { moodData } from '@/Data/data';
 import { TextInput } from 'react-native';
 import { fonts } from 'react-native-elements/dist/config';
 import { FontSize } from '@/Theme/Variables';
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         margin: 12,
         padding: 10,
         backgroundColor: "green",
-        borderRadius:100,
+        borderRadius: 100,
     }
 })
 
@@ -36,17 +36,20 @@ export default class MoodQuote extends Component {
         this.props.navigation.navigate('History');
     }
     render() {
+        const mood = this.props.route.params.mood
+        const submood = this.props.route.params.submood;
+        const quote = moodData[mood][submood];
         return (
             <SafeAreaView>
                 <Card containerStyle={styles.card_today}>
-                    <Card.Title style={{ fontSize: 24,fontFamily:'Quicksand-Bold' }}> Quotes for cheering up</Card.Title>
+                    <Card.Title style={{ fontSize: 24, fontFamily: 'Quicksand-Bold' }}> Quotes for cheering up</Card.Title>
                     <Card.Divider />
                     <View>
-                        <Text style={{ fontSize: 20,fontWeight:"700", padding: 10, textAlign: 'center', backgroundColor: "white", borderRadius: 20 ,fontFamily:'Quicksand-Regular'}}>
-                            We cannot solve problems with the kind of thinking we employed when we came up with them.
+                        <Text style={{ fontSize: 20, fontWeight: "700", padding: 10, textAlign: 'center', backgroundColor: "white", borderRadius: 20, fontFamily: 'Quicksand-Regular' }}>
+                            {quote}
                         </Text>
                     </View>
-                    <View style={{ flexDirection: 'row',justifyContent: 'space-around'}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                         <TouchableHighlight onPress={this.goHome} style={styles.home}>
                             <Text style={{ color: "white", fontWeight: "800" }}>
                                 Home

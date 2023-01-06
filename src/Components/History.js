@@ -9,33 +9,9 @@ import { getDBConnection, createTable, getmoodItems, savemoodItems, addMood } fr
 import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width;
 
-const DetailQ = [
-  "Everything falls in place when you feel grateful, why are you feeling grateful?"
 
-];
 
-const moodDescrpt = [
-  {
-    'emoji': "😴",
-    "descrp": "sleep"
-  },
-  {
-    'emoji': "🛍️",
-    "descrp": "shopping"
-  },
-  {
-    "emoji": "🧗‍♂️",
-    "descrp": "Activity"
-  },
-  {
-    "emoji": "🎉",
-    "descrp": "Party"
-  },
-  {
-    "emoji": "🌤",
-    "descrp": "weather"
-  }
-];
+
 
 const sendEmoji = '';
 const styles = StyleSheet.create({
@@ -93,11 +69,12 @@ export default class History extends Component {
     this.state = {
       mooditems: [],
       moodcount: {
-        "studios": 0,
-        "pensive": 0,
-        "happy": 0,
-        "celebratory": 0,
-        "frustrated": 0
+        "Happy": 0,
+        "Sad": 0,
+        "Fear": 0,
+        "Anger": 0,
+        "Disgust": 0,
+        "Surprise": 0,
       },
     };
 
@@ -135,11 +112,12 @@ export default class History extends Component {
   async getMoodcount() {
 
     const countMood = {
-      "studios": 0,
-      "pensive": 0,
-      "happy": 0,
-      "celebratory": 0,
-      "frustrated": 0
+      "Happy": 0,
+      "Sad": 0,
+      "Fear": 0,
+      "Anger": 0,
+      "Disgust": 0,
+      "Surprise": 0,
     }
     for (var i = 0; i < this.state.mooditems.length; i++) {
       countMood[this.state.mooditems[i].mood] += 1;
@@ -164,11 +142,12 @@ export default class History extends Component {
 
 
     const pieData = [
-      { key: 1, value: this.state.moodcount.studios, color: '#2a9d8f', text: '🧑‍💻' },
-      { key: 2, value: this.state.moodcount.pensive, color: '#f7d6e0', text: '🤔' },
-      { key: 3, value: this.state.moodcount.happy, color: '#ef476f', text: '😊' },
-      { key: 4, value: this.state.moodcount.celebratory, color: '#ffb703', text: '🥳' },
-      { key: 5, value: this.state.moodcount.frustrated, color: '#21b0fe', text: '😤' },
+      { key: 1, value: this.state.moodcount.Happy, color: '#2a9d8f', text: '🧑‍💻' },
+      { key: 2, value: this.state.moodcount.Sad, color: '#f7d6e0', text: '🤔' },
+      { key: 3, value: this.state.moodcount.Fear, color: '#ef476f', text: '😊' },
+      { key: 4, value: this.state.moodcount.Anger, color: '#ffb703', text: '🥳' },
+      { key: 5, value: this.state.moodcount.Disgust, color: '#21b0fe', text: '😤' },
+      { key: 6, value: this.state.moodcount.Surprise, color: '#21b0fe', text: '😤' }
     ];
 
 

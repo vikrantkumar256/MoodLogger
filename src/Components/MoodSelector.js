@@ -4,11 +4,12 @@ import { Text, Card, Divider, Switch } from 'react-native-elements';
 import { AppTextRegular, AppTextBold } from './AppText';
 
 const moodOptions = [
-  { emoji: '🧑‍💻', description: 'studios' },
-  { emoji: '🤔', description: 'pensive' },
-  { emoji: '😊', description: 'happy' },
-  { emoji: '🥳', description: 'celebratory' },
-  { emoji: '😤', description: 'frustrated' },
+  { emoji: '😊', description: 'Happy' },
+  { emoji: '😥', description: 'Sad' },
+  { emoji: '😨', description: 'Fear' },
+  { emoji: '😠', description: 'Anger' },
+  { emoji: '😤', description: 'Disgust' },
+  { emoji: '😮', description: 'Surprise' },
 ];
 
 export default class MoodPicker extends Component {
@@ -53,7 +54,7 @@ export default class MoodPicker extends Component {
     return (
       <View>
         <View style={styles.container}>
-          <AppTextBold style={styles.heading}>How are you feeling today?</AppTextBold>
+          <AppTextBold style={styles.headingTop}>How are you feeling today?</AppTextBold>
           <View style={styles.moodList}>
             {
               moodOptions.map(option => (
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     padding: 20,
     justifyContent: 'space-between',
-    height: 230,
+    height: 500,
     backgroundColor: '#D9D1F8',
   },
   image: {
@@ -171,6 +172,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     color: theme.colorBlack,
+    flexWrap: 'wrap',
   },
   buttonList: {
     flexDirection: 'row',
@@ -178,14 +180,14 @@ const styles = StyleSheet.create({
     color: theme.colorBlack,
   },
   moodText: {
-    fontSize: 25,
+    fontSize: 40,
     margin: 10,
   },
   moodItem: {
-    height: 60,
-    width: 60,
-    borderRadius: 30,
-    borderWidth: 0.5,
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    borderWidth: 2,
     borderColor: '#822faf',
     justifyContent: 'center',
     alignItems: 'center',
@@ -208,13 +210,20 @@ const styles = StyleSheet.create({
   },
   heading: {
     color: theme.colorBlack,
-    fontSize: 20,
+    fontSize: 40,
     letterSpacing: 1,
     textAlign: 'center',
   },
-  headingonClick: {
+  headingTop: {
     color: theme.colorBlack,
     fontSize: 30,
+    letterSpacing: 1,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  headingonClick: {
+    color: theme.colorBlack,
+    fontSize: 50,
     letterSpacing: 1,
     textAlign: 'center',
   },
