@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, Pressable, Alert } from 'react-native';
-import { Text, Card, Divider, Switch } from 'react-native-elements';
+import { StyleSheet, View, Pressable } from 'react-native';
+import { Text} from 'react-native-elements';
 import { AppTextRegular, AppTextBold } from './AppText';
 
 const moodOptions = [
@@ -38,7 +38,6 @@ export default class MoodPicker extends Component {
       selectedMood: option
     }));
     console.log("selectedmood", this.state.selectedMood);
-    // this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood });
   }
   submitmood(option) {
     if (this.state.selectedMood != '') { this.props.navigation.navigate('MoodDetail', { selectedMood: this.state.selectedMood }); }
@@ -130,31 +129,11 @@ const theme = {
   fontFamilyLight: 'Quicksand-Thin',
 };
 const styles = StyleSheet.create({
-
-  card: {
-    backgroundColor: theme.colorBlack,
-    borderWidth: 0,
-    borderRadius: 50
-  },
-  time: {
-    fontSize: 38,
-    color: '#fff'
-  },
-  temperature: {
-    fontSize: 38,
-    color: '#fff',
-    textTransform: 'capitalize'
-  },
-  type: {
-    fontSize: 18,
-    color: '#fff',
-    textTransform: 'capitalize'
-  },
-  loading: {
-    fontSize: 28,
-    color: '#fff',
-    textTransform: 'capitalize'
-  },
+  
+  
+  
+  
+  
   container: {
     borderWidth: 0.5,
     borderColor: '#822faf',
@@ -164,9 +143,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     height: 500,
     backgroundColor: '#D9D1F8',
-  },
-  image: {
-    alignSelf: 'center',
   },
   moodList: {
     flexDirection: 'row',
@@ -178,10 +154,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     color: theme.colorBlack,
-  },
-  moodText: {
-    fontSize: 40,
-    margin: 10,
   },
   moodItem: {
     height: 100,

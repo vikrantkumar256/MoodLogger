@@ -2,39 +2,11 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, SafeAreaView, Pressable } from 'react-native';
 import { Card } from 'react-native-elements';
 import { TextInput } from 'react-native';
-import { loadLanguages } from 'i18next';
 import { imageData, moodData } from '@/Data/data';
 import { Image } from 'react-native';
-
-import { getDBConnection, createTable, getmoodItems, savemoodItems, addMood } from '@/Services/database/db_services';
+import { getDBConnection, createTable, addMood } from '@/Services/database/db_services';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { objectOf } from 'prop-types';
 
-
-const moodDescrpt = [
-    {
-        'emoji': "😴",
-        "descrp": "sleep"
-    },
-    {
-        'emoji': "🛍️",
-        "descrp": "shopping"
-    },
-    {
-        "emoji": "🧗‍♂️",
-        "descrp": "Activity"
-    },
-    {
-        "emoji": "🎉",
-        "descrp": "Party"
-    },
-    {
-        "emoji": "🌤",
-        "descrp": "weather"
-    }
-];
-
-const sendEmoji = '';
 const styles = StyleSheet.create({
     detail: {
         flexDirection: 'row',
@@ -64,28 +36,25 @@ const styles = StyleSheet.create({
     },
     card_today: {
         borderRadius: 50,
-        backgroundColor: '#CDEFF9'
+        backgroundColor: '#CDEFF9',
+        height: 500,
     },
     inputBlock: {
         flexDirection: 'row',
 
+    },
+    columnstyle:{
+        height:400,
+        flexDirection: 'column',
+        justifyContent : 'space-around'
     }
 });
 
 const initializeDatabasetxn = async (mood, description) => {
     try {
-        //   const initMood = {  mood: mood, description:description };
-        console.log("mood", mood, "description", description);
         const db = await getDBConnection();
         await createTable(db);
         await addMood(db, mood, description);
-        const storedMoodItems = await getmoodItems(db);
-        if (storedMoodItems.length) {
-            console.log(storedMoodItems);
-        } else {
-            console.log(storedMoodItems);
-            // await savemoodItems(db, initMood);
-        }
     } catch (error) {
         console.error(error);
     }
@@ -100,18 +69,9 @@ export default class MoodDetail extends Component {
 
     constructor(props) {
         super(props);
-        // const {params} = this.props.navigation.state;
-        // this.selectedMood = params.selectedMood;
         this.state = {
             "text": ""
         };
-
-
-
-
-
-
-
         this.handleChangeText = this.handleChangeText.bind(this);
         this.handleDetail = this.handleDetail.bind(this);
     }
@@ -128,18 +88,13 @@ export default class MoodDetail extends Component {
     }
 
     saveInput = () => {
-        console.log(this.props.route.params.selectedMood.description, this.state.text);
         mood = this.props.route.params.selectedMood.description;
         initializeDatabasetxn(this.props.route.params.selectedMood.description, this.state.text);
-        // initDatabase(this.props.route.params.selectedMood, this.state.text);
-        // alert("Mood Saved");
         this.props.navigation.navigate('MoodQuote', { 'mood': mood, 'submood': "custom" });
     }
 
 
     handleDetail = (descrp) => {
-        console.log(descrp);
-        console.log(this.props.route.params.selectedMood.description);
         mood = this.props.route.params.selectedMood.description;
         initializeDatabasetxn(this.props.route.params.selectedMood.description, descrp);
         alert("Mood Saved");
@@ -152,19 +107,16 @@ export default class MoodDetail extends Component {
 
     render() {
         const mood = this.props.route.params.selectedMood.description;
-        // console.log("mood", mood);
-        // console.log(moodData);
-        // console.log(objectOf(mood));
-        console.log('submood', moodData[mood]);
         const Submood = Object.keys(moodData[mood]).slice(0, -2);
 
         return (
             <SafeAreaView>
-                <View>
+                <View >
                     <Card containerStyle={styles.card_today}>
                         <Card.Title style={{ fontSize: 20 }}>Feeling {mood}! What's the reason
                             Come'on share with us</Card.Title>
                         <Card.Divider />
+                        <View style = {styles.columnstyle}>
                         <View style={styles.detail}>
                             {
                                 Submood.map((key) => {
@@ -196,6 +148,7 @@ export default class MoodDetail extends Component {
                                     Send
                                 </Text>
                             </TouchableHighlight>
+                        </View>
                         </View>
 
                     </Card>
