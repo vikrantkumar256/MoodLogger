@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import { Card } from 'react-native-elements';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { moodData } from '@/Data/data';
-import { TextInput } from 'react-native';
-import { fonts } from 'react-native-elements/dist/config';
-import { FontSize } from '@/Theme/Variables';
 
 const styles = StyleSheet.create({
     card_today: {

@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, SafeAreaView, Pressable } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 import { Card } from 'react-native-elements';
-import { TextInput } from 'react-native';
-import { loadLanguages } from 'i18next';
 import { PieChart } from "react-native-gifted-charts";
-
-import { getDBConnection, createTable, getmoodItems, savemoodItems, addMood } from '@/Services/database/db_services';
-import { Dimensions } from "react-native";
-const screenWidth = Dimensions.get("window").width;
+import { getDBConnection, createTable, getmoodItems } from '@/Services/database/db_services';
 
 
 
-
-
-const sendEmoji = '';
 const styles = StyleSheet.create({
   detail: {
     flexDirection: 'row',
@@ -64,8 +56,6 @@ export default class History extends Component {
 
   constructor(props) {
     super(props);
-    // const {params} = this.props.navigation.state;
-    // this.selectedMood = params.selectedMood;
     this.state = {
       mooditems: [],
       moodcount: {
@@ -80,30 +70,18 @@ export default class History extends Component {
 
     this.initializeDatabasetxn = this.initializeDatabasetxn.bind(this);
     this.getMoodcount = this.getMoodcount.bind(this);
-
-
-
     this.initializeDatabasetxn();
-
-
-
   }
 
   async initializeDatabasetxn() {
     try {
-      //   const initMood = {  mood: mood, description:description };
-
       const db = await getDBConnection();
       await createTable(db);
       const storedMoodItems = await getmoodItems(db);
-      console.log(storedMoodItems);
       await this.setState((prevState) => ({
         mooditems: storedMoodItems
       }));
       this.getMoodcount();
-
-
-      console.log("historymood items", this.state.mooditems);
     } catch (error) {
       console.error(error);
     }
@@ -121,13 +99,8 @@ export default class History extends Component {
     }
     for (var i = 0; i < this.state.mooditems.length; i++) {
       countMood[this.state.mooditems[i].mood] += 1;
-
     }
-    console.log("countmood", countMood);
     await this.setState((prevState) => ({ moodcount: countMood }));
-    console.log("moodcount", this.state.moodcount);
-
-
 
   }
 
