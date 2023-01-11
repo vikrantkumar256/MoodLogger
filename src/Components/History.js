@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    height:400,
+    height: 400,
   },
   descrp: {
     flexDirection: "column",
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   card_today: {
     borderRadius: 50,
     backgroundColor: '#CDEFF9',
-    height:500,
+    height: 500,
   },
   history: {
     fontSize: 30,
@@ -157,40 +157,9 @@ export default class History extends Component {
             <Card.Title style={{ fontSize: 20 }}>{"History"}</Card.Title>
             <Card.Divider />
             <View style={styles.detail}>
-<<<<<<< HEAD
-              {/* {
-                                this.state.mooditems.map(({ id, mood, description }) => {
-                                    return (
-                                        <Pressable key={id} onPress={this.handleDetail} style={({ pressed }) => [{ backgroundColor: pressed ? '#FEDEF7' : '#CDEFF9' },]}>
-                                            <View style={styles.descrp}>
-                                                <Text style={styles.emoji}>
-                                                    {mood}
-                                                </Text>
-                                                <Text style={styles.descrpText}>
-                                                    {description}
-                                                </Text>
-                                            </View>
-                                        </Pressable>
-                                    )
-                                })
-                            } */}
-              {/* <PieChart
-  data={data}
-  width={screenWidth}
-  height={220}
-  chartConfig={chartConfig}
-  accessor={"mood"}
-  backgroundColor={"transparent"}
-  paddingLeft={"15"}
-  center={[10, 50]}
-  absolute
-/> */}
-              {showpie()}
 
-=======
-            {showpie()}
-              
->>>>>>> bb58d29142ae923afc6eb2c739e37f95807e0315
+
+              {showpie()}
             </View>
 
           </Card>
