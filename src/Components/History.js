@@ -147,36 +147,35 @@ export default class History extends Component {
       { key: 3, value: this.state.moodcount.Fear, color: '#ef476f', text: '😨' },
       { key: 4, value: this.state.moodcount.Anger, color: '#ffb703', text: '😠' },
       { key: 5, value: this.state.moodcount.Disgust, color: '#21b0fe', text: '😤' },
-      { key: 6, value: this.state.moodcount.Surprise, color: '#21b0fe', text: '😮' }
+      { key: 6, value: this.state.moodcount.Surprise, color: '#A04E3C', text: '😮' }
     ];
 
-    function showpie(){
-      var sum=0;
-      for(var i =0;i<pieData.length;i++)
-      {
+    function showpie() {
+      var sum = 0;
+      for (var i = 0; i < pieData.length; i++) {
         sum = sum + parseInt(pieData[i].value);
       }
-      if(sum<=0)
-      {
-        return <Text style={{textAlign:"center"}}>There is no mood logged yet</Text>
+      if (sum <= 0) {
+        return <Text style={{ textAlign: "center" }}>There is no mood logged yet</Text>
       }
       else {
         return <PieChart
-      showText
-      textColor="black"
-      radius={150}
-      textSize={20}
-      showTextBackground
-      textBackgroundRadius={18}
-      data={pieData}
-    />}
+          showText
+          textColor="black"
+          radius={150}
+          textSize={20}
+          showTextBackground
+          textBackgroundRadius={18}
+          data={pieData}
+        />
+      }
     }
 
 
     return (
-      
+
       <SafeAreaView>
-        
+
         <View>
           <Card containerStyle={styles.card_today}>
             <Card.Title style={{ fontSize: 20 }}>{"History"}</Card.Title>
@@ -209,8 +208,8 @@ export default class History extends Component {
   center={[10, 50]}
   absolute
 /> */}
-{showpie()}
-              
+              {showpie()}
+
             </View>
 
           </Card>
