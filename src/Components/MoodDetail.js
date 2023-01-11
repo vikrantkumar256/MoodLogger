@@ -36,11 +36,17 @@ const styles = StyleSheet.create({
     },
     card_today: {
         borderRadius: 50,
-        backgroundColor: '#CDEFF9'
+        backgroundColor: '#CDEFF9',
+        height: 500,
     },
     inputBlock: {
         flexDirection: 'row',
 
+    },
+    columnstyle:{
+        height:400,
+        flexDirection: 'column',
+        justifyContent : 'space-around'
     }
 });
 
@@ -105,11 +111,12 @@ export default class MoodDetail extends Component {
 
         return (
             <SafeAreaView>
-                <View>
+                <View >
                     <Card containerStyle={styles.card_today}>
                         <Card.Title style={{ fontSize: 20 }}>Feeling {mood}! What's the reason
                             Come'on share with us</Card.Title>
                         <Card.Divider />
+                        <View style = {styles.columnstyle}>
                         <View style={styles.detail}>
                             {
                                 Submood.map((key) => {
@@ -141,6 +148,7 @@ export default class MoodDetail extends Component {
                                     Send
                                 </Text>
                             </TouchableHighlight>
+                        </View>
                         </View>
 
                     </Card>
