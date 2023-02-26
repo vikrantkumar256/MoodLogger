@@ -118,13 +118,15 @@ export default class History extends Component {
 
 
     const pieData = [
-      { key: 1, value: this.state.moodcount.Happy, color: '#2a9d8f', text: '😊' },
-      { key: 2, value: this.state.moodcount.Sad, color: '#f7d6e0', text: '😥' },
-      { key: 3, value: this.state.moodcount.Fear, color: '#ef476f', text: '😨' },
-      { key: 4, value: this.state.moodcount.Anger, color: '#ffb703', text: '😠' },
-      { key: 5, value: this.state.moodcount.Disgust, color: '#21b0fe', text: '😤' },
-      { key: 6, value: this.state.moodcount.Surprise, color: '#A04E3C', text: '😮' }
+      { value: this.state.moodcount.Happy, color: '#2a9d8f', text: '😊' },
+      { value: this.state.moodcount.Sad, color: '#f7d6e0', text: '😥' },
+      { value: this.state.moodcount.Fear, color: '#ef476f', text: '😨' },
+      { value: this.state.moodcount.Anger, color: '#ffb703', text: '😠' },
+      { value: this.state.moodcount.Disgust, color: '#21b0fe', text: '😤' },
+      { value: this.state.moodcount.Surprise, color: '#A04E3C', text: '😮' }
     ];
+
+
 
     function showpie() {
       var sum = 0;

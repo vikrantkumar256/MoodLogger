@@ -28,28 +28,28 @@ export default class App extends React.Component {
 
 		return (
 
-		<NavigationContainer>
+			<NavigationContainer>
 
-			<Stack.Navigator>
-			<Stack.Screen
-				name="MoodSelector"
-				component={MoodSelector}
-			/>
-			<Stack.Screen
-				name="MoodDetail"
-				component={MoodDetail}
-			/>
-			<Stack.Screen
-				name="History"
-				component={History}
-			/>
-			<Stack.Screen
-				name="MoodQuote"
-				component={MoodQuote} />
-					
-			</Stack.Navigator>
+				<Stack.Navigator>
+					<Stack.Screen
+						name="MoodSelector"
+						component={MoodSelector}
+					/>
+					<Stack.Screen
+						name="MoodDetail"
+						component={MoodDetail}
+					/>
+					<Stack.Screen
+						name="History"
+						component={History}
+					/>
+					<Stack.Screen
+						name="MoodQuote"
+						component={MoodQuote} />
 
-      	</NavigationContainer>
+				</Stack.Navigator>
+
+			</NavigationContainer>
 
 		);
 	}
